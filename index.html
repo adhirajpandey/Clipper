@@ -1,0 +1,29 @@
+<html>
+    <body style="text-align: center;">
+        <script>
+            async function sendClipboardData() {
+                const clipboardText = document.getElementById("paste-area").value
+                console.log(clipboardText)
+
+                const payload = {
+                    "clipboardText": clipboardText
+                }
+
+
+                const response = await fetch("http://localhost:8000/save", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(payload),
+                  });
+              
+                  const result = await response.json();
+            }
+        </script>
+        <h2 style="text-align: center;">Online Clipboard</h2>
+        <textarea style="width: 80vw; height: 70vh" id="paste-area" cols="120" rows="10" placeholder="Paste your text here..."></textarea>
+        <br><br>
+        <button style="text-align: center;" onclick="sendClipboardData()">Save Text</button>
+    </body>
+</html>
