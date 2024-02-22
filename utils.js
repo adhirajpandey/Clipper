@@ -1,4 +1,4 @@
-export function generateClipId(length) {
+function generateClipId(length) {
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'
     let result = ''
 
@@ -8,4 +8,8 @@ export function generateClipId(length) {
     }
 
     return result
+}
+
+module.exports = {
+    generateClipId
 }

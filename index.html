@@ -28,9 +28,9 @@
 
                 document.getElementById("output-div").innerHTML = ""
 
-                const outputElem = document.createElement("div");
+                const outputElem = document.createElement("div")
 
-                outputElem.innerHTML = `Your clip is available at: <a href="${window.location.origin}/${result.clip.clipId}" target="_blank">${window.location.origin}/${result.clip.clipId}</a>`;
+                outputElem.innerHTML = `Your clip is available at: <a href="${window.location.origin}/${result.clip.clipId}" target="_blank">${window.location.origin}/${result.clip.clipId}</a>`
                 document.getElementById("output-div").appendChild(outputElem)
             }
         </script>
