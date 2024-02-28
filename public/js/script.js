@@ -25,7 +25,7 @@ async function sendClipboardData() {
     
         const outputElem = document.createElement("div")
     
-        outputElem.innerHTML = `Your clip is available at: <a href="${window.location.origin}/clip/${result.clip.clipId}" target="_blank">${window.location.origin}/clip/${result.clip.clipId}</a>`
+        outputElem.innerHTML = `Clip Link: <a href="${window.location.origin}/clip/${result.clip.clipId}" target="_blank">${window.location.origin}/clip/${result.clip.clipId}</a>`
         document.getElementById("output-div").appendChild(outputElem)
     
         document.getElementById("paste-area").value = ""

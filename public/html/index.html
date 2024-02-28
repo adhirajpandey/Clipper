@@ -3,14 +3,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Clipper</title>
+        <script src="https://cdn.tailwindcss.com"></script>
         <script src="../js/script.js"></script>
     </head>
-    <body style="text-align: center;">
-        <h2 style="text-align: center;">Clipper - Online Clipboard</h2>
-        <textarea style="width: 80vw; height: 70vh; background-color: #f8f8f8;" id="paste-area" cols="120" rows="10" placeholder="Paste your text here..."></textarea>
-        <br><br>
-        <button style="text-align: center;" onclick="sendClipboardData()">Save Text</button>
-        <br><br>
+    <body class="bg-slate-900 text-center text-white font-serif">
+        <div class="text-3xl sm:text-4xl text-white p-2 w-9/12 mx-auto">
+            Clipper: Online Clipboard
+        </div>
+        <div>
+            <textarea class="w-10/12 h-2/3 sm:h-4/5 p-2 bg-gray-200 rounded-lg text-black" id="paste-area" placeholder="Paste your text here..."></textarea>
+        </div>
+        <button class="rounded-lg bg-indigo-500 hover:bg-indigo-600 mt-2 p-2" onclick="sendClipboardData()">Save Text</button>
+        <br>
         <div id="output-div"></div>
     </body>
 </html>
