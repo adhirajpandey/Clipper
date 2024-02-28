@@ -10,6 +10,4 @@ function generateClipId(length) {
     return result
 }
 
-module.exports = {
-    generateClipId
-}
+module.exports = generateClipId

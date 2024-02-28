@@ -1,30 +1,36 @@
 const express = require("express")
 const cors = require("cors")
+const path = require('path')
+const dotenv = require("dotenv")
 
-const { connectDB } = require("./db")
+const connectDB = require("./database/connectMongo")
 const clipRoute = require("./routes/clip")
 
+dotenv.config({
+    path: './.env'
+})
+
+const PORT = process.env.PORT || 8000
 
 const app = express()
 
-
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())
 app.use(cors())
+
 app.use('/clip', clipRoute)
 
-
 app.get("/", (req, resp) => {
-    resp.sendFile(__dirname + "/index.html")
+    resp.sendFile(path.join(__dirname, "public", "html", "index.html"))
 })
 
 
 connectDB()
-.then(() => {
-    app.listen(process.env.PORT || 8000, () => {
-        console.log("Server is running at port : 8000")
-    })
-})
-.catch((err) => {
-    console.log("MONGO DB initial connection failed !!! ", err)
-})
 
+app.listen(PORT, (err) => {
+    if (err) {
+        console.error("Error starting the server:", err)
+    } else {
+        console.log(`Server is running on port ${PORT}`)
+    }
+})

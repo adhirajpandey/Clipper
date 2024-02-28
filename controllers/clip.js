@@ -1,5 +1,5 @@
 const Clipboard = require("../models/clip")
-const { generateClipId } = require("../utils")
+const generateClipId = require("../utils/generateClipId")
 
 async function saveClip(req, resp) {
     try {
