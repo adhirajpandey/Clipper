@@ -6,7 +6,7 @@ async function createUser(req, resp) {
     try{
         const name = req.body.name
         const email = req.body.email
-        const password = req.body.passwords
+        const password = req.body.password
 
         const newUserItem = new User({
             name,
