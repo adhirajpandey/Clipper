@@ -1,8 +1,8 @@
 const express = require("express")
 const cors = require("cors")
-const path = require('path')
+const path = require("path")
 const dotenv = require("dotenv").config()
-const rateLimiter = require('express-rate-limit')
+const rateLimiter = require("express-rate-limit")
 
 const connectDB = require("./database/connectMongo")
 const clipRoute = require("./routes/clip")

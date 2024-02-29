@@ -1,4 +1,5 @@
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
 const User = require("../models/user")
 
 
@@ -8,10 +9,12 @@ async function createUser(req, resp) {
         const email = req.body.email
         const password = req.body.password
 
+        const hashedPassword = await bcrypt.hash(password, 10)
+
         const newUserItem = new User({
-            name,
-            email,
-            password
+            name: name,
+            email: email,
+            password: hashedPassword
         })
 
         const response = await newUserItem.save()
@@ -30,15 +33,19 @@ async function loginUser(req, resp) {
         const email = req.body.email
         const password = req.body.password
 
-        const user = await User.findOne({email, password})
+        const user = await User.findOne({email})
 
         if (!user) {
-            resp.status(400).json({ error: 'Incorrect email or password' })
+            resp.status(400).json({ error: 'User does not exists' })
         } else {
-            userPayload = {id: user._id, email: user.email}
-            const token = jwt.sign(userPayload, process.env.SECRET_KEY);
-            
-            resp.json({token})
+            const passwordMatch = await bcrypt.compare(password, user.password)
+            if (!passwordMatch) {
+                resp.status(400).json({ error: 'Invalid email or password' })
+            } else {
+                userPayload = {id: user._id, email: user.email}
+                const token = jwt.sign(userPayload, process.env.SECRET_KEY);
+                resp.json({token})
+            }
         }
     } catch(error) {
         console.error('Error fetching user item:', error)
