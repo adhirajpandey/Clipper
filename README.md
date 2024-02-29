@@ -19,6 +19,7 @@ Check it out - https://clipper.adhiraj.live/
 
 ## TODO
 
+- [x] Rate Limiting
 - [ ] Password Protect Clips
 - [ ] Auto Expire Clips
 - [ ] Custom Slug for Clip

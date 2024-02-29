@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const path = require('path')
 const dotenv = require("dotenv").config()
+const rateLimiter = require('express-rate-limit')
 
 const connectDB = require("./database/connectMongo")
 const clipRoute = require("./routes/clip")
@@ -9,13 +10,20 @@ const userRoute = require("./routes/user")
 const authMiddleware = require("./middlewares/authentication")
 
 
+const limiter = rateLimiter({
+	windowMs: 5 * 60 * 1000, // 5 minutes
+	limit: 100
+})
+
 const PORT = process.env.PORT || 8000
+
 
 const app = express()
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())
 app.use(cors())
+app.use(limiter)
 
 app.use('/clip', authMiddleware, clipRoute)
 app.use('/user', userRoute)
