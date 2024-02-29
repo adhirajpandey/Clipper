@@ -1,14 +1,13 @@
 const express = require("express")
 const cors = require("cors")
 const path = require('path')
-const dotenv = require("dotenv")
+const dotenv = require("dotenv").config()
 
 const connectDB = require("./database/connectMongo")
 const clipRoute = require("./routes/clip")
+const userRoute = require("./routes/user")
+const authMiddleware = require("./middlewares/authentication")
 
-dotenv.config({
-    path: './.env'
-})
 
 const PORT = process.env.PORT || 8000
 
@@ -18,7 +17,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())
 app.use(cors())
 
-app.use('/clip', clipRoute)
+app.use('/clip', authMiddleware, clipRoute)
+app.use('/user', userRoute)
 
 app.get("/", (req, resp) => {
     resp.sendFile(path.join(__dirname, "public", "html", "index.html"))
