@@ -3,7 +3,6 @@ const BASE_BACKEND_URL = "http://localhost:8000/"
 const saveGeneralClipData = async function () {
 	const clipboardText = document.getElementById("paste-area").value
 	const payload = {}
-	console.log(window.location.href)
 	if (clipboardText.length < 1) {
 		alert("Clip content cannot be empty")
 	} else {
@@ -20,7 +19,6 @@ const saveGeneralClipData = async function () {
 		})
 
 		const result = await response.json()
-		console.log(result.clip.clipId)
 
 		document.getElementById("output-div").innerHTML = ""
 
@@ -47,7 +45,6 @@ const savePremiumClipData = async function () {
 				payload = {
 					clipboardText: clipboardText,
 				}
-				console.log(payload)
 			} else {
 				payload = {
 					clipboardText: clipboardText,
@@ -69,7 +66,6 @@ const savePremiumClipData = async function () {
 			)
 
 			const result = await response.json()
-			console.log(result)
 
 			document.getElementById("output-div").innerHTML = ""
 
@@ -116,10 +112,10 @@ async function checkPassword() {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(payload)
+				body: JSON.stringify(payload),
 			}
 		)
-	
+
 		const result = await response.json()
 
 		document.getElementById("password").value = ""
@@ -128,23 +124,16 @@ async function checkPassword() {
 			document.body.innerHTML = ""
 			const clip = result.clip
 			const formattedClipString = `<pre>${clip.clipString}</pre>`
-			
+
 			document.body.removeAttribute("class")
 			document.body.innerHTML = formattedClipString
-	
 		} else {
 			alert("Invalid Password")
 		}
 	} catch (error) {
 		alert("Error checking password")
 	}
-} 
-
-
-
-
-	
-
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 	document
