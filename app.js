@@ -1,44 +1,40 @@
 const express = require("express")
 const cors = require("cors")
 const path = require("path")
-const dotenv = require("dotenv").config()
-const rateLimiter = require("express-rate-limit")
+require("dotenv").config()
 
 const connectDB = require("./database/connectMongo")
 const clipRoute = require("./routes/clip")
 const userRoute = require("./routes/user")
+const premiumRoute = require("./routes/premium")
 const authMiddleware = require("./middlewares/authentication")
-
-
-const limiter = rateLimiter({
-	windowMs: 5 * 60 * 1000, // 5 minutes
-	limit: 100
-})
+const { HTML_DIR } = require("./configs")
+const limiter = require("./utils/rateLimiter")
 
 const PORT = process.env.PORT || 8000
 
-
 const app = express()
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, "public")))
 app.use(express.json())
 app.use(cors())
 app.use(limiter)
 
-app.use('/clip', authMiddleware, clipRoute)
-app.use('/user', userRoute)
+// app.use("/clip", authMiddleware, clipRoute)
+app.use("/clip", clipRoute)
+app.use("/user", userRoute)
+app.use("/premium", premiumRoute)
 
 app.get("/", (req, resp) => {
-    resp.sendFile(path.join(__dirname, "public", "html", "index.html"))
+	resp.sendFile(path.join(HTML_DIR, "index.html"))
 })
-
 
 connectDB()
 
 app.listen(PORT, (err) => {
-    if (err) {
-        console.error("Error starting the server:", err)
-    } else {
-        console.log(`Server is running on port ${PORT}`)
-    }
+	if (err) {
+		console.error("Error starting the server:", err)
+	} else {
+		console.log(`Server is running on port ${PORT}`)
+	}
 })

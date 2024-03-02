@@ -1,20 +1,32 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Clipper</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="../js/script.js"></script>
-    </head>
-    <body class="bg-slate-900 text-center text-white font-serif">
-        <div class="text-3xl sm:text-4xl text-white p-2 w-9/12 mx-auto">
-            Clipper: Online Clipboard
-        </div>
-        <div>
-            <textarea class="w-10/12 h-2/3 sm:h-4/5 p-2 bg-gray-200 rounded-lg text-black" id="paste-area" placeholder="Paste your text here..."></textarea>
-        </div>
-        <button class="rounded-lg bg-indigo-500 hover:bg-indigo-600 mt-2 p-2" onclick="sendClipboardData()">Save Text</button>
-        <br>
-        <div id="output-div"></div>
-    </body>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Clipper</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="../js/script.js"></script>
+	</head>
+	<body class="bg-slate-900 text-white">
+		<h2 class="text-4xl m-2 font-bold text-center">
+			Clipper: Online Clipboard
+		</h2>
+
+		<div class="p-2 m-4 text-center order-1 md:order-2">
+			<div class="w-full h-[70vh]">
+				<textarea
+					class="bg-gray-700 rounded-lg text-white w-full h-full p-2"
+					id="paste-area"
+					placeholder="Paste your text here..."
+				></textarea>
+			</div>
+			<button
+				id="save-clip-btn"
+				class="rounded-lg bg-indigo-500 hover:bg-indigo-600 p-2 m-2 mt-4"
+			>
+				Save Clip
+			</button>
+			<div id="output-div"></div>
+		</div>
+	</body>
 </html>
