@@ -1,13 +1,11 @@
 name: Docker Image CI
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
-
   build:
 
     runs-on: ubuntu-latest
@@ -24,4 +22,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: adhirajpandey/clipper:$(date +%s)
+          tags: adhirajpandey/clipper:latest
+
+      - name: Trigger Jenkins CD Pipeline
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.JENKINS_TRIGGER_TOKEN }}" ${{ secrets.JENKINS_WEBHOOK_TRIGGER_URL }}
