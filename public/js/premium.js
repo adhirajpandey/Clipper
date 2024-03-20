@@ -1,37 +1,5 @@
 const BASE_BACKEND_URL = window.location.origin + "/"
 
-const saveGeneralClipData = async function () {
-	const clipboardText = document.getElementById("paste-area").value
-	const payload = {}
-	if (clipboardText.length < 1) {
-		alert("Clip content cannot be empty")
-	} else {
-		const payload = {
-			clipboardText: clipboardText,
-		}
-
-		const response = await fetch(BASE_BACKEND_URL + "clip/" + "save", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(payload),
-		})
-
-		const result = await response.json()
-
-		document.getElementById("output-div").innerHTML = ""
-
-		const outputElem = document.createElement("div")
-		outputElem.classList.add("text-xl", "font-bold")
-
-		outputElem.innerHTML = `Clip Link: <a href="${window.location.origin}/clip/${result.clip.clipId}" target="_blank">${window.location.origin}/clip/${result.clip.clipId}</a>`
-		document.getElementById("output-div").appendChild(outputElem)
-
-		document.getElementById("paste-area").value = ""
-	}
-}
-
 const savePremiumClipData = async function () {
 	try {
 		const clipboardText = document.getElementById("paste-area").value
@@ -83,21 +51,6 @@ const savePremiumClipData = async function () {
 	}
 }
 
-function checkUserTypeAndSaveClip() {
-	const token = localStorage.getItem("token")
-	const userType = token ? "premium" : "general"
-	console.log(userType)
-	saveClip(userType)
-}
-
-function saveClip(userType) {
-	if (userType == "premium") {
-		savePremiumClipData()
-	} else {
-		saveGeneralClipData()
-	}
-}
-
 async function checkPassword() {
 	const clipId = window.location.href.split("/").pop()
 	const password = document.getElementById("password").value
@@ -139,5 +92,5 @@ async function checkPassword() {
 document.addEventListener("DOMContentLoaded", function () {
 	document
 		.getElementById("save-clip-btn")
-		.addEventListener("click", checkUserTypeAndSaveClip)
+		.addEventListener("click", savePremiumClipData)
 })

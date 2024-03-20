@@ -1,6 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const path = require("path")
+const cookieParser = require("cookie-parser")
 require("dotenv").config()
 
 const connectDB = require("./database/connectMongo")
@@ -19,11 +20,12 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(express.json())
 app.use(cors())
 app.use(limiter)
+app.use(cookieParser())
 
 // app.use("/clip", authMiddleware, clipRoute)
 app.use("/clip", clipRoute)
 app.use("/user", userRoute)
-app.use("/premium", premiumRoute)
+app.use("/premium", authMiddleware, premiumRoute)
 
 app.get("/", (req, resp) => {
 	resp.sendFile(path.join(HTML_DIR, "index.html"))
