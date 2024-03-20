@@ -12,10 +12,8 @@ function authenticate(req, resp, next) {
 			req.headers.userId = decoded.id
 			req.headers.email = decoded.email
 		}
-		console.log(req.headers)
 		next()
 	} catch (error) {
-		console.log("Error in Authenticating", error)
 		resp.status(401).json({ message: "Unauthorized User" })
 	}
 }

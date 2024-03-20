@@ -5,11 +5,11 @@ const cookieParser = require("cookie-parser")
 require("dotenv").config()
 
 const connectDB = require("./database/connectMongo")
+const staticRoute = require("./routes/static")
 const clipRoute = require("./routes/clip")
 const userRoute = require("./routes/user")
 const premiumRoute = require("./routes/premium")
 const authMiddleware = require("./middlewares/authentication")
-const { HTML_DIR } = require("./configs")
 const limiter = require("./utils/rateLimiter")
 
 const PORT = process.env.PORT || 8000
@@ -22,20 +22,10 @@ app.use(cors())
 app.use(limiter)
 app.use(cookieParser())
 
-// app.use("/clip", authMiddleware, clipRoute)
+app.use("/", staticRoute)
 app.use("/clip", clipRoute)
 app.use("/user", userRoute)
 app.use("/premium", authMiddleware, premiumRoute)
-
-app.get("/", (req, resp) => {
-	resp.sendFile(path.join(HTML_DIR, "index.html"))
-})
-app.get("/login", (req, resp) => {
-	resp.sendFile(path.join(HTML_DIR, "login.html"))
-})
-app.get("/signup", (req, resp) => {
-	resp.sendFile(path.join(HTML_DIR, "signup.html"))
-})
 
 connectDB()
 
