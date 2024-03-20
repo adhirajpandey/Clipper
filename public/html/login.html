@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Clipper</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="../js/login.js"></script>
+	</head>
+	<body class="bg-slate-900 text-white">
+		<h2 class="text-4xl m-2 font-bold text-center">
+			Clipper: Online Clipboard
+		</h2>
+
+		<div class="p-2 text-center mt-4 pt-10">
+			<h2 class="text-2xl font-bold mb-1">User Login</h2>
+			<div class="flex flex row justify-center items-center">
+				<input
+					id="username"
+					type="text"
+					class="rounded bg-gray-200 text-black px-1 h-[4vh] m-1"
+					placeholder="Username/Email"
+				/>
+			</div>
+			<div class="flex flex row justify-center items-center">
+				<input
+					id="password"
+					type="password"
+					class="rounded bg-gray-200 text-black px-1 h-[4vh] m-1"
+					placeholder="Password"
+				/>
+			</div>
+            <div class="flex flex row justify-center items-center">
+                <button
+					onclick="loginUser()"
+					id="login-btn"
+					class="rounded-lg bg-indigo-500 hover:bg-indigo-600 p-2 m-2 mt-4"
+				>
+					Login
+				</button>
+		</div>
+	</body>
+</html>

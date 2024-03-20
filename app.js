@@ -28,6 +28,12 @@ app.use("/premium", premiumRoute)
 app.get("/", (req, resp) => {
 	resp.sendFile(path.join(HTML_DIR, "index.html"))
 })
+app.get("/login", (req, resp) => {
+	resp.sendFile(path.join(HTML_DIR, "login.html"))
+})
+app.get("/signup", (req, resp) => {
+	resp.sendFile(path.join(HTML_DIR, "signup.html"))
+})
 
 connectDB()
 

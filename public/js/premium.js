@@ -1,4 +1,4 @@
-const BASE_BACKEND_URL = "http://localhost:8000/"
+const BASE_BACKEND_URL = window.location.origin + "/"
 
 const saveGeneralClipData = async function () {
 	const clipboardText = document.getElementById("paste-area").value
@@ -84,8 +84,9 @@ const savePremiumClipData = async function () {
 }
 
 function checkUserTypeAndSaveClip() {
-	// const userType = localStorage.getItem("userType")
-	const userType = "premium"
+	const token = localStorage.getItem("token")
+	const userType = token ? "premium" : "general"
+	console.log(userType)
 	saveClip(userType)
 }
 
