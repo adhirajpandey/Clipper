@@ -18,8 +18,6 @@ passport.use(
 			callbackURL: process.env.GOOGLE_CALLBACK_URL,
 		},
 		function (accessToken, refreshToken, profile, cb) {
-			//console.log(accessToken, refreshToken, profile)
-			console.log("Google Oauth Validation Called")
 			return cb(null, profile)
 		}
 	)
@@ -32,7 +30,6 @@ function googleRedirect(req, res) {
 		picture: req.user._json.picture,
 		provider: req.user.provider,
 	}
-	// console.log(user)
 
 	let token = jwt.sign({ email: user.email }, process.env.SECRET_KEY)
 	res.cookie("token", token)
