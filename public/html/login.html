@@ -31,14 +31,35 @@
 					placeholder="Password"
 				/>
 			</div>
-            <div class="flex flex row justify-center items-center">
-                <button
+			<div class="flex flex row justify-center items-center">
+				<button
 					onclick="loginUser()"
 					id="login-btn"
 					class="rounded-lg bg-indigo-500 hover:bg-indigo-600 p-2 m-2 mt-4"
 				>
 					Login
 				</button>
+			</div>
+			<h3 class="text-xl font-bold mb-1">OR</h3>
+			<a href="/oauth/google">
+				<button
+					class="group h-12 px-6 border-2 border-gray-300 rounded-xl hover:border-blue-400 m-2"
+				>
+					<div
+						class="relative flex items-center space-x-4 justify-center"
+					>
+						<img
+							src="https://www.svgrepo.com/show/475656/google-color.svg"
+							class="w-5"
+							alt="Google Logo"
+						/>
+						<span
+							class="block w-max font-semibold tracking-wide text-gray-700 dark:text-white text-sm sm:text-base"
+							>Continue with Google
+						</span>
+					</div>
+				</button>
+			</a>
 		</div>
 	</body>
 </html>
