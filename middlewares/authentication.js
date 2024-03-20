@@ -9,7 +9,7 @@ function authenticate(req, resp, next) {
 			resp.status(400).json({ message: "No Token Found" })
 		} else {
 			const decoded = jwt.verify(token, process.env.SECRET_KEY)
-			req.headers.userId = decoded.id
+			// req.headers.userId = decoded.id
 			req.headers.email = decoded.email
 		}
 		next()
