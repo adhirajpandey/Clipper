@@ -4,7 +4,7 @@
 
 Clipper is a straightforward web-based utility that serves as an online clipboard, allowing you to save text and share a link for accessing the content at a later time.
 
-Objective of making this tool is to learn basics of express and mongoose.
+Objective of making this tool is to learn vanilla JS DOM Manipulation, basics of express and mongoose.
 
 Check it out - https://clipper.adhiraj.live/
 
@@ -20,7 +20,7 @@ Check it out - https://clipper.adhiraj.live/
 ## TODO
 
 - [x] Rate Limiting
-- [ ] Password Protect Clips
+- [x] Password Protect Clips
 - [ ] Auto Expire Clips
 - [ ] Custom Slug for Clip
 - [ ] QR Code for Clip
