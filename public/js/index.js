@@ -37,6 +37,9 @@ const saveGeneralClipData = async function () {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+	if (checkLoggedIn()) {
+		window.location.href = "/premium"
+	}
 	document
 		.getElementById("save-clip-btn")
 		.addEventListener("click", saveGeneralClipData)
