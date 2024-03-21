@@ -32,7 +32,7 @@ function googleRedirect(req, res) {
 	}
 
 	let token = jwt.sign({ email: user.email }, process.env.SECRET_KEY)
-	res.cookie("token", token)
+	res.cookie("clipper-token", token)
 	res.redirect("/premium")
 }
 

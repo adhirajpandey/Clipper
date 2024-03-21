@@ -20,7 +20,7 @@ const loginUser = async function () {
 				const result = await response.json()
 				const token = result.token
 				// localStorage.setItem("token", token)
-				document.cookie = `token=${token};`
+				document.cookie = `clipper-token=${token};`
 				window.location.href = "/premium"
 			} else {
 				alert("Invalid email or password")

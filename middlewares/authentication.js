@@ -4,7 +4,7 @@ function authenticate(req, resp, next) {
 	try {
 		// const authHeaderValue = req.headers.authorization
 		// const token = authHeaderValue.split("Bearer ")[1]
-		const token = req.cookies.token
+		const token = req.cookies["clipper-token"]
 		if (!token) {
 			resp.status(400).json({ message: "No Token Found" })
 		} else {

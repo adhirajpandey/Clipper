@@ -1,5 +1,5 @@
 function checkLoggedIn() {
-	if (document.cookie.indexOf("token") !== -1) {
+	if (document.cookie.indexOf("clipper-token") !== -1) {
 		return true
 	} else {
 		return false
@@ -7,7 +7,7 @@ function checkLoggedIn() {
 }
 
 function logout() {
-	document.cookie = "token=;expires=" + new Date(0).toGMTString()
+	document.cookie = "clipper-token=;expires=" + new Date(0).toGMTString()
 	window.location.href = "/"
 }
 
