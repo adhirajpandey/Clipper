@@ -1,6 +1,7 @@
 const Clipboard = require("../models/clip")
 const generateClipId = require("../utils/generateClipId")
 const { HTML_DIR } = require("../configs")
+const generateQR = require("../utils/generateQR")
 const path = require("path")
 
 async function saveClip(req, resp) {
@@ -14,6 +15,11 @@ async function saveClip(req, resp) {
 		})
 
 		const response = await newClipboardItem.save()
+
+		const BASE_URL = process.env.BASE_URL || "http://localhost:8000"
+		const clipUrl = `${BASE_URL}/clip/${clipId}`
+
+		await generateQR(clipUrl, clipId)
 
 		resp.json({
 			clip: response,

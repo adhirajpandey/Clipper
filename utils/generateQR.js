@@ -4,7 +4,7 @@ const { IMG_DIR } = require("../configs")
 
 const basePath = path.join(IMG_DIR, "qrcodes/")
 
-function generateQR(text, name) {
+async function generateQR(text, name) {
 	const path = `${basePath}${name}.png`
 	QRCode.toFile(
 		path,
@@ -13,8 +13,9 @@ function generateQR(text, name) {
 			errorCorrectionLevel: "H",
 		},
 		function (err) {
-			if (err) throw err
-			console.log("QR code saved!")
+			if (err) {
+				console.log("Error generating QR code:", err)
+			}
 		}
 	)
 }

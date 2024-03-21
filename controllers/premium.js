@@ -2,6 +2,7 @@ const path = require("path")
 const { HTML_DIR } = require("../configs/index")
 const Clipboard = require("../models/clip")
 const generateClipId = require("../utils/generateClipId")
+const generateQR = require("../utils/generateQR")
 
 async function premiumClipper(req, resp) {
 	try {
@@ -25,6 +26,11 @@ async function premiumClipSave(req, resp) {
 		})
 
 		const response = await newClipboardItem.save()
+
+		const BASE_URL = process.env.BASE_URL || "http://localhost:8000"
+		const clipUrl = `${BASE_URL}/clip/${clipId}`
+
+		await generateQR(clipUrl, clipId)
 
 		resp.json({
 			clip: response,

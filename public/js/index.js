@@ -26,7 +26,8 @@ const saveGeneralClipData = async function () {
 			const outputElem = document.createElement("div")
 			outputElem.classList.add("text-xl", "font-bold")
 
-			outputElem.innerHTML = `Clip Link: <a href="${window.location.origin}/clip/${result.clip.clipId}" target="_blank">${window.location.origin}/clip/${result.clip.clipId}</a>`
+			outputElem.innerHTML = `<a href="${window.location.origin}/clip/${result.clip.clipId}" target="_blank" class="underline">${window.location.origin}/clip/${result.clip.clipId}</a> \n
+									<a class="text-sm text-slate-400" href="${window.location.origin}/images/qrcodes/${result.clip.clipId}.png" target="_blank"> (Show QR Code)</a>`
 			document.getElementById("output-div").appendChild(outputElem)
 
 			document.getElementById("paste-area").value = ""

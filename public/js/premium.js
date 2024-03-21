@@ -43,6 +43,10 @@ const savePremiumClipData = async function () {
 			outputElem.innerHTML = `Clip Link: <a href="${window.location.origin}/clip/${result.clip.clipId}" target="_blank">${window.location.origin}/clip/${result.clip.clipId}</a>`
 			document.getElementById("output-div").appendChild(outputElem)
 
+			document.getElementById("qrcode-img").src =
+				`${window.location.origin}/images/qrcodes/${result.clip.clipId}.png`
+			document.getElementById("qrcode-div").classList.remove("hidden")
+
 			document.getElementById("paste-area").value = ""
 			document.getElementById("clip-password").value = ""
 		}
