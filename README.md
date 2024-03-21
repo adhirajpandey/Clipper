@@ -21,6 +21,7 @@ Check it out - https://clipper.adhiraj.live/
 
 - [x] Rate Limiting
 - [x] Password Protect Clips
+- [x] Google Auth
 - [ ] Auto Expire Clips
 - [ ] Custom Slug for Clip
 - [ ] QR Code for Clip
