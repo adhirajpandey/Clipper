@@ -19,6 +19,11 @@ const clipboardSchema = new mongoose.Schema(
 			type: String,
 			required: false,
 		},
+		clipOwner: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "users",
+			required: false,
+		},
 	},
 	{
 		versionKey: false,

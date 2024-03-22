@@ -7,7 +7,8 @@ function checkLoggedIn() {
 }
 
 function logout() {
-	document.cookie = "clipper-token=;expires=" + new Date(0).toGMTString()
+	document.cookie =
+		"clipper-token=;expires=" + new Date(0).toGMTString() + ";path=/"
 	window.location.href = "/"
 }
 

@@ -11,8 +11,9 @@ function authenticate(req, resp, next) {
 			const decoded = jwt.verify(token, process.env.SECRET_KEY)
 			// req.headers.userId = decoded.id
 			req.headers.email = decoded.email
+			req.headers.id = decoded.id
+			next()
 		}
-		next()
 	} catch (error) {
 		resp.status(401).json({ message: "Unauthorized User" })
 	}

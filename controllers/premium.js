@@ -18,11 +18,13 @@ async function premiumClipSave(req, resp) {
 		const clipboardText = req.body.clipboardText
 		const clipId = generateClipId(8)
 		const password = req.body.clipPassword || null
+		const userId = req.headers.id
 
 		let newClipboardItem = new Clipboard({
 			clipId: clipId,
 			clipString: clipboardText,
 			clipPassword: password,
+			clipOwner: userId,
 		})
 
 		const response = await newClipboardItem.save()
@@ -67,8 +69,33 @@ async function premiumClipView(req, resp) {
 	}
 }
 
+async function dashboard(req, resp) {
+	try {
+		resp.sendFile(path.join(HTML_DIR, "dashboard.html"))
+	} catch (error) {
+		console.error("Error sending dashboard page:", error)
+		resp.status(500).json({ error: "Internal Server Error" })
+	}
+}
+
+async function dashboardData(req, resp) {
+	try {
+		const userEmail = req.headers.email
+		const userId = req.headers.id
+
+		const clips = await Clipboard.find({ clipOwner: userId })
+
+		resp.json({ clips: clips, email: userEmail })
+	} catch (error) {
+		console.error("Error sending dashboard data:", error)
+		resp.status(500).json({ error: "Internal Server Error" })
+	}
+}
+
 module.exports = {
 	premiumClipper,
 	premiumClipSave,
 	premiumClipView,
+	dashboard,
+	dashboardData,
 }

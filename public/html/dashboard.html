@@ -6,8 +6,8 @@
 		<title>Clipper Premium</title>
 		<link rel="icon" type="image/x-icon" href="../images/clipper.png" />
 		<script src="https://cdn.tailwindcss.com"></script>
-		<script src="../js/premium.js"></script>
 		<script src="../js/utils.js"></script>
+		<script src="../js/dashboard.js"></script>
 	</head>
 	<body class="bg-slate-900 text-white">
 		<div class="fixed top-0 left-0 w-full z-50 bg-slate-900">
@@ -35,13 +35,6 @@
 					<div
 						class="flex-shrink-0 flex py-3 items-center space-x-2 sm:space-x-6"
 					>
-						<a
-							href="/premium/dashboard"
-							id="dashboard-btn"
-							class="text-black cursor-pointer bg-indigo-200 hover:bg-indigo-100 inline-flex items-center justify-center px-3 py-2 text-sm font-medium rounded-md shadow-sm"
-						>
-							Dashboard
-						</a>
 						<button
 							id="login-btn"
 							class="text-black cursor-pointer bg-indigo-100 hover:bg-indigo-200 inline-flex items-center justify-center px-3 py-2 text-sm font-medium rounded-md shadow-sm"
@@ -59,50 +52,9 @@
 			</div>
 		</div>
 		<div class="text-2xl mt-20 font-extrabold text-white text-center">
-			Premium Clipper: Save Your Clip
+			Premium: Dashboard
 		</div>
-		<div
-			class="container mx-auto mt-2 p-2 flex flex-col md:flex-row text-white"
-		>
-			<!-- First Half -->
-			<div class="p-2 text-center order-2">
-				<h2 class="text-2xl font-bold mb-2">Clip Controls</h2>
-				<div class="flex flex row justify-center items-center">
-					<h3 class="text-xl font-base whitespace-nowrap">
-						🔒Protect Clip:
-					</h3>
-					<input
-						id="clip-password"
-						type="password"
-						class="rounded bg-gray-200 text-black px-1 h-[4vh] m-1"
-						placeholder="Password"
-					/>
-				</div>
-				<div
-					id="qrcode-div"
-					class="my-4 py-2 flex flex row justify-center items-center hidden"
-				>
-					<img id="qrcode-img" class="w-1/2 h-1/2" src="" />
-				</div>
-			</div>
-
-			<!-- Second Half -->
-			<div class="md:w-9/12 p-2 text-center order-1 md:order-2">
-				<div class="w-full h-[70vh]">
-					<textarea
-						class="bg-gray-700 rounded-lg text-black w-full h-full text-white p-2"
-						id="paste-area"
-						placeholder="Paste your text here..."
-					></textarea>
-				</div>
-				<button
-					id="save-clip-btn"
-					class="rounded-lg bg-indigo-500 hover:bg-indigo-600 p-2 m-2 mt-4"
-				>
-					Save Clip
-				</button>
-				<div id="output-div"></div>
-			</div>
-		</div>
+		<div class="text-xl font-bold text-white text-center" id="email"></div>
+		<div class="mx-auto max-w-7xl" id="clipList"></div>
 	</body>
 </html>
