@@ -8,7 +8,6 @@ Objective of making this tool is to learn vanilla JS DOM Manipulation, basics of
 
 Check it out - https://clipper.adhiraj.live/
 
-
 ## Installation and Usage
 
 1. Clone the project to your local system using: `git clone https://github.com/adhirajpandey/Clipper`.
@@ -16,12 +15,12 @@ Check it out - https://clipper.adhiraj.live/
 3. Install the dependencies: `npm install`
 4. Run the app: `node app.js`
 
-
 ## TODO
 
-- [x] Rate Limiting
-- [x] Password Protect Clips
-- [x] Google Auth
-- [ ] Auto Expire Clips
-- [ ] Custom Slug for Clip
-- [ ] QR Code for Clip
+-   [x] Rate Limiting
+-   [x] Password Protect Clips
+-   [x] Google Auth
+-   [ ] Auto Expire Clips
+-   [ ] Custom Slug for Clip
+-   [x] QR Code for Clip
+-   [ ] User Dashboard
