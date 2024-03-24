@@ -6,7 +6,7 @@ Clipper is a straightforward web-based utility that serves as an online clipboar
 
 Objective of making this tool is to learn vanilla JS DOM Manipulation, basics of express and mongoose.
 
-Check it out - https://clipper.adhiraj.live/
+Check it out - https://clipper.adhirajpandey.me/
 
 ## Installation and Usage
 
