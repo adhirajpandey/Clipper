@@ -23,4 +23,4 @@ Check it out - https://clipper.adhirajpandey.me/
 -   [ ] Auto Expire Clips
 -   [ ] Custom Slug for Clip
 -   [x] QR Code for Clip
--   [ ] User Dashboard
+-   [x] User Dashboard
