@@ -1,6 +1,7 @@
 const passport = require("passport")
 const GoogleStrategy = require("passport-google-oauth20").Strategy
 const jwt = require("jsonwebtoken")
+const User = require("../models/user")
 
 passport.serializeUser(function (user, cb) {
 	cb(null, user)
@@ -23,7 +24,7 @@ passport.use(
 	)
 )
 
-function googleRedirect(req, res) {
+async function googleRedirect(req, res) {
 	let user = {
 		name: req.user.displayName,
 		email: req.user._json.email,
@@ -31,7 +32,23 @@ function googleRedirect(req, res) {
 		provider: req.user.provider,
 	}
 
-	let token = jwt.sign({ email: user.email }, process.env.SECRET_KEY)
+	const exisitingUser = await User.findOne({ email: user.email })
+
+	let userPayload
+
+	if (!exisitingUser) {
+		const newUserItem = new User({
+			name: user.name,
+			email: user.email,
+			password: null,
+		})
+		const response = await newUserItem.save()
+		userPayload = { id: response._id, email: user.email }
+	} else {
+		userPayload = { id: exisitingUser._id, email: user.email }
+	}
+
+	let token = jwt.sign(userPayload, process.env.SECRET_KEY)
 	res.cookie("clipper-token", token)
 	res.redirect("/premium")
 }
