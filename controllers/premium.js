@@ -92,10 +92,34 @@ async function dashboardData(req, resp) {
 	}
 }
 
+async function deleteClip(req, resp) {
+	try {
+		const userEmail = req.headers.email
+		const userId = req.headers.id
+
+		const clipId = req.body.clipId
+
+		const clip = await Clipboard.findOne({ clipId: clipId }).populate(
+			"clipOwner"
+		)
+
+		if (clip.clipOwner.email !== userEmail) {
+			resp.status(401).json({ error: "Unauthorized" })
+		} else {
+			await Clipboard.deleteOne({ clipId: clipId })
+			resp.status(200).json({ message: "Clip Deleted" })
+		}
+	} catch (error) {
+		console.error("Error deleting clip:", error)
+		resp.status(500).json({ error: "Internal Server Error" })
+	}
+}
+
 module.exports = {
 	premiumClipper,
 	premiumClipSave,
 	premiumClipView,
 	dashboard,
 	dashboardData,
+	deleteClip,
 }
