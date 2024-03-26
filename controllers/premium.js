@@ -3,6 +3,7 @@ const { HTML_DIR } = require("../configs/index")
 const Clipboard = require("../models/clip")
 const generateClipId = require("../utils/generateClipId")
 const generateQR = require("../utils/generateQR")
+const ifSlugAvailable = require("../utils/customSlug")
 
 async function premiumClipper(req, resp) {
 	try {
@@ -16,9 +17,22 @@ async function premiumClipper(req, resp) {
 async function premiumClipSave(req, resp) {
 	try {
 		const clipboardText = req.body.clipboardText
-		const clipId = generateClipId(8)
 		const password = req.body.clipPassword || null
 		const userId = req.headers.id
+		const customSlug = req.body.customSlug || null
+		let clipId
+
+		if (customSlug) {
+			const slugAvailable = await ifSlugAvailable(customSlug)
+			if (!slugAvailable) {
+				resp.status(400).json({ message: "Slug already exists" })
+				return
+			} else {
+				clipId = customSlug
+			}
+		} else {
+			clipId = generateClipId(8)
+		}
 
 		let newClipboardItem = new Clipboard({
 			clipId: clipId,

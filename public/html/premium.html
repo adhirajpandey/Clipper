@@ -67,20 +67,40 @@
 			<!-- First Half -->
 			<div class="p-2 text-center order-2">
 				<h2 class="text-2xl font-bold mb-2">Clip Controls</h2>
-				<div class="flex flex row justify-center items-center">
-					<h3 class="text-xl font-base whitespace-nowrap">
-						🔒Protect Clip:
-					</h3>
-					<input
-						id="clip-password"
-						type="password"
-						class="rounded bg-gray-200 text-black px-1 h-[4vh] m-1"
-						placeholder="Password"
-					/>
-				</div>
+				<form
+					id="clip-controls-form"
+					class="flex flex-col items-center"
+				>
+					<div class="flex items-center mb-2">
+						<label
+							for="clip-password"
+							class="text-xl font-base mr-4 whitespace-nowrap"
+							>🔒Protect Clip</label
+						>
+						<input
+							id="clip-password"
+							type="password"
+							class="rounded bg-gray-200 text-black px-1 h-[4vh] m-1"
+							placeholder="Password"
+						/>
+					</div>
+					<div class="flex items-center mb-2">
+						<label
+							for="custom-slug"
+							class="text-xl font-base mr-1 whitespace-nowrap"
+							>👻Custom Slug</label
+						>
+						<input
+							id="custom-slug"
+							type="text"
+							class="rounded bg-gray-200 text-black px-1 h-[4vh] m-1"
+							placeholder="Slug"
+						/>
+					</div>
+				</form>
 				<div
 					id="qrcode-div"
-					class="my-4 py-2 flex flex row justify-center items-center hidden"
+					class="my-4 py-2 flex justify-center items-center hidden"
 				>
 					<img id="qrcode-img" class="w-1/2 h-1/2" src="" />
 				</div>

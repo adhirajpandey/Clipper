@@ -4,21 +4,21 @@ const savePremiumClipData = async function () {
 	try {
 		const clipboardText = document.getElementById("paste-area").value
 		const clipPassword = document.getElementById("clip-password").value
+		const customSlug = document.getElementById("custom-slug").value
 		let payload = {}
 
 		if (clipboardText.length < 1) {
 			alert("Clip content cannot be empty")
 		} else {
-			if (clipPassword.length < 1) {
-				payload = {
-					clipboardText: clipboardText,
-				}
-			} else {
-				payload = {
-					clipboardText: clipboardText,
-					clipPassword: clipPassword,
-				}
+			payload.clipboardText = clipboardText
+			if (clipPassword.length >= 1) {
+				payload.clipPassword = clipPassword
 			}
+			if (customSlug.length >= 1) {
+				payload.customSlug = customSlug
+			}
+
+			console.log(payload)
 
 			const response = await fetch(
 				BASE_BACKEND_URL + "premium" + "/clip" + "/save",
@@ -26,8 +26,6 @@ const savePremiumClipData = async function () {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
-						// Authorization:
-						// 	"Bearer " + localStorage.getItem("token"),
 					},
 					body: JSON.stringify(payload),
 				}
@@ -35,20 +33,25 @@ const savePremiumClipData = async function () {
 
 			const result = await response.json()
 
-			document.getElementById("output-div").innerHTML = ""
+			if (response.status != 200) {
+				alert(result.message)
+			} else {
+				document.getElementById("output-div").innerHTML = ""
 
-			const outputElem = document.createElement("div")
-			outputElem.classList.add("text-xl", "font-bold")
+				const outputElem = document.createElement("div")
+				outputElem.classList.add("text-xl", "font-bold")
 
-			outputElem.innerHTML = `Clip Link: <a href="${window.location.origin}/clip/${result.clip.clipId}" target="_blank">${window.location.origin}/clip/${result.clip.clipId}</a>`
-			document.getElementById("output-div").appendChild(outputElem)
+				outputElem.innerHTML = `Clip Link: <a href="${window.location.origin}/clip/${result.clip.clipId}" target="_blank">${window.location.origin}/clip/${result.clip.clipId}</a>`
+				document.getElementById("output-div").appendChild(outputElem)
 
-			document.getElementById("qrcode-img").src =
-				`${window.location.origin}/images/qrcodes/${result.clip.clipId}.png`
-			document.getElementById("qrcode-div").classList.remove("hidden")
+				document.getElementById("qrcode-img").src =
+					`${window.location.origin}/images/qrcodes/${result.clip.clipId}.png`
+				document.getElementById("qrcode-div").classList.remove("hidden")
 
-			document.getElementById("paste-area").value = ""
-			document.getElementById("clip-password").value = ""
+				document.getElementById("paste-area").value = ""
+				document.getElementById("clip-password").value = ""
+				document.getElementById("custom-slug").value = ""
+			}
 		}
 	} catch (error) {
 		alert("Error saving premium clip")
