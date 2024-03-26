@@ -11,9 +11,9 @@ Check it out - https://clipper.adhirajpandey.me/
 ## Installation and Usage
 
 1. Clone the project to your local system using: `git clone https://github.com/adhirajpandey/Clipper`.
-2. You can use Dockerfile to run in containerized environment.
+2. You can use Dockerfile to run in containerized environment, or
 3. Install the dependencies: `npm install`
-4. Run the app: `node app.js`
+4. Run the app: `npm run prod`
 
 ## TODO
 
@@ -24,3 +24,4 @@ Check it out - https://clipper.adhirajpandey.me/
 -   [x] QR Code for Clip
 -   [x] User Dashboard
 -   [ ] Auto Expire Clip
+-   [ ] Clip View UI
