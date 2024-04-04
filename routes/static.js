@@ -13,5 +13,8 @@ router.get("/login", (req, resp) => {
 router.get("/signup", (req, resp) => {
 	resp.sendFile(path.join(HTML_DIR, "signup.html"))
 })
+router.get("/policy", (req, resp) => {
+	resp.sendFile(path.join(HTML_DIR, "policy.html"))
+})
 
 module.exports = router
