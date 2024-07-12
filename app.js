@@ -12,6 +12,7 @@ const clipRoute = require("./routes/clip")
 const userRoute = require("./routes/user")
 const premiumRoute = require("./routes/premium")
 const oauthRoute = require("./routes/oauth")
+const razpayRoute = require("./routes/razpay")
 const authMiddleware = require("./middlewares/authentication")
 const limiter = require("./utils/rateLimiter")
 
@@ -40,6 +41,7 @@ app.use("/clip", clipRoute)
 app.use("/user", userRoute)
 app.use("/premium", authMiddleware, premiumRoute)
 app.use("/oauth", oauthRoute)
+app.use("/razorpay", razpayRoute)
 
 connectDB()
 
