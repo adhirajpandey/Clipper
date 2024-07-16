@@ -14,6 +14,15 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: false,
 		},
+		category: {
+			type: String,
+			required: false,
+		},
+		payment: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "payments",
+			required: false
+		},
 	},
 	{
 		versionKey: false,
