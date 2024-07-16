@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema(
 		},
 		category: {
 			type: String,
-			required: false,
+			required: true,
+			default: "normal",
 		},
 		payment: {
 			type: mongoose.Schema.Types.ObjectId,
