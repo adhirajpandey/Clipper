@@ -20,7 +20,7 @@
 		"prettier": "^3.2.5"
 	},
 	"scripts": {
-		"prod": "mkdir public/images/qrcodes && node app.js",
+		"prod": "if [ ! -d public/images/qrcodes ]; then mkdir public/images/qrcodes; fi && node app.js",
 		"dev": "nodemon app.js"
 	}
 }
